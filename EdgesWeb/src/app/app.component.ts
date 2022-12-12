@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { saveAs } from 'file-saver';
-import {HttpParams} from '@angular/common/http';
-import { of, pipe } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs';
 
 
 @Component({
@@ -49,10 +47,35 @@ export class AppComponent implements OnInit {
         formData.append("protein", protein);
         formData.append("pathwaydesc", pathwaydesc);
         formData.append("pathwayid", pathwayid);
-        this.http.post('/Edges', formData, { responseType:'text'}).subscribe(result => {this.file = result;});
+        this.getTextFile(formData).subscribe();
         var resultDisplay = document.getElementById('resultDisplay');
         if (resultDisplay != undefined) {
             resultDisplay.innerHTML = 'Success'
+        }
+    }
+
+    getTextFile(formData: FormData) {
+        return this.http.post('/Edges', formData, {responseType: 'text'})
+          .pipe(
+            tap({
+              next: (data) => {this.file = data;},
+              error: (error) => this.logError(error)
+            })
+          );
+      }
+
+    logSuccess(data) {
+        this.file = data;
+        var resultDisplay = document.getElementById('resultDisplay');
+        if (resultDisplay != undefined) {
+            resultDisplay.innerHTML = 'Success!'
+        }
+    }
+
+    logError(error) {
+        var resultDisplay = document.getElementById('resultDisplay');
+        if (resultDisplay != undefined) {
+            resultDisplay.innerHTML = error.error
         }
     }
 
