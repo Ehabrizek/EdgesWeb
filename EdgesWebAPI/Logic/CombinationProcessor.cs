@@ -1,8 +1,6 @@
 using System.Data;
 using System.Data.OleDb;
 
-
-
 namespace EdgesWebAPI.Logic
 {
     public class CombinationProcessor

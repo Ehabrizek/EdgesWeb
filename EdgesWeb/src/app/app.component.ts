@@ -14,10 +14,10 @@ import { map } from 'rxjs/operators';
 export class AppComponent implements OnInit {
     _event;
     file;
-    constructor(private http: HttpClient) { }
 
-    ngOnInit(): void {
-    }
+    constructor(private http: HttpClient) {}
+
+    ngOnInit(): void {}
 
     process() {
         if (this._event) {
@@ -36,8 +36,7 @@ export class AppComponent implements OnInit {
         }
     }
 
-    sendPostRequest(inputFile: File)
-    {
+    sendPostRequest(inputFile: File) {
         var sheet = (<HTMLInputElement>document.getElementById('sheet')).value;
         var protein = (<HTMLInputElement>document.getElementById('protein')).value
         var pathwaydesc = (<HTMLInputElement>document.getElementById('pathwaydesc')).value;
@@ -51,6 +50,10 @@ export class AppComponent implements OnInit {
         formData.append("pathwaydesc", pathwaydesc);
         formData.append("pathwayid", pathwayid);
         this.http.post('/Edges', formData, { responseType:'text'}).subscribe(result => {this.file = result;});
+        var resultDisplay = document.getElementById('resultDisplay');
+        if (resultDisplay != undefined) {
+            resultDisplay.innerHTML = 'Success'
+        }
     }
 
     fileValidation(event) {
@@ -59,7 +62,7 @@ export class AppComponent implements OnInit {
         if (inputFile) {
             var allowedExtensions = /(\.xls|\.xlsx)$/i;
             if (!allowedExtensions.exec(inputFile.name)) {
-                alert('Please upload file having extensions .xls/ or .xlsx only.');
+                alert('File must having extension .xls or .xlsx');
                 event.target.value = null;
                 return false;
             }

@@ -1,6 +1,4 @@
 <main>
-  
-  <script src="app.component.ts"></script>
 <body>
   <h1 id="Heading">Welcome to Edges</h1>
   Input Excel File!<br>
@@ -19,7 +17,8 @@
     <label for="pathwayid">Enter the header of the Pathway Id column:</label><br>
     <input type="text" id="pathwayid" value="Pathway Id" size="75" ><br><br>
 
-    <input type="submit" value="Process" (click)="process()"/><br><br>
+    <input type="submit" value="Process" (click)="process()"/>
+    <p id="resultDisplay"></p>
     <input type="submit" value="Download" (click)="download()"/>
 </body>
 </main>

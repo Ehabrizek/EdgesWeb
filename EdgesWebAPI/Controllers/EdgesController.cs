@@ -39,42 +39,20 @@ namespace EdgesWebAPI.Controllers
 
                 CombinationProcessor processor = new CombinationProcessor();
                 string outputFileName = processor.WriteCombinations(inputFile, excelFileInfo);
-                
+                _logger.LogInformation($"Combinations created for excel file {fileData.FileName}");
+
                 System.IO.File.Delete(inputFile);
 
+                //FileStreamResult will dispose this.
                 FileStream outputFileStream = System.IO.File.OpenRead(outputFileName);
-                string contentType = "";
-                new FileExtensionContentTypeProvider().TryGetContentType(outputFileName, out contentType);
+
+                string contentType = "text/csv";
                 return new FileStreamResult(outputFileStream, contentType);
             }
             catch (Exception e)
             {
+                _logger.LogError(e.Message);
                 return StatusCode(500, e.Message);
-            }
-        }
-
-        [HttpGet]
-        public FileStreamResult GetFile([FromBody] string fileNameGuid)
-        {
-            string file = $"{fileNameGuid}.csv";
-            using (FileStream fileStream = new FileStream(file, FileMode.OpenOrCreate))
-            {
-                return new FileStreamResult(fileStream, "application/octem-stream.csv");
-            }
-        }
-
-        [HttpDelete]
-        public IActionResult DeleteFile([FromBody] string fileNameGuid)
-        {
-            string fileName = $"{fileNameGuid}.csv";
-            try
-            {
-                System.IO.File.Delete(fileName);
-                return Ok();
-            }
-            catch
-            {
-                return StatusCode(500);
             }
         }
     }
