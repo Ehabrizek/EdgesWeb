@@ -48,17 +48,13 @@ export class AppComponent implements OnInit {
         formData.append("pathwaydesc", pathwaydesc);
         formData.append("pathwayid", pathwayid);
         this.getTextFile(formData).subscribe();
-        var resultDisplay = document.getElementById('resultDisplay');
-        if (resultDisplay != undefined) {
-            resultDisplay.innerHTML = 'Success'
-        }
     }
 
     getTextFile(formData: FormData) {
         return this.http.post('/Edges', formData, {responseType: 'text'})
           .pipe(
             tap({
-              next: (data) => {this.file = data;},
+              next: (data) => {this.logSuccess(data)},
               error: (error) => this.logError(error)
             })
           );
@@ -75,7 +71,7 @@ export class AppComponent implements OnInit {
     logError(error) {
         var resultDisplay = document.getElementById('resultDisplay');
         if (resultDisplay != undefined) {
-            resultDisplay.innerHTML = error.error
+            resultDisplay.innerHTML = error.error;
         }
     }
 
@@ -103,7 +99,7 @@ export class AppComponent implements OnInit {
             saveAs(data, 'EdgesOutput.csv');
         }
         else {
-            alert('No files to download! Try processing first, or retry with valid input');
+            alert('No files to download! Try processing first, or retry with valid input!');
         }
     }
 }

@@ -1,5 +1,5 @@
 # EdgesWeb
-# Prerequisite
+# Prerequisites
 Install npm <br>
 https://www.npmjs.com/
 
