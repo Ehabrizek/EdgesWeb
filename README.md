@@ -1,7 +1,7 @@
 # EdgesWeb
 # Prerequisites
 Install npm <br>
-https://www.npmjs.com/
+https://nodejs.org/en/download/
 
 Install Angular CLI <br>
 	npm install -g @angular/cli
