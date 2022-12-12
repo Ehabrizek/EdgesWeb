@@ -10,7 +10,7 @@ import { tap } from 'rxjs';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    _event;
+    event;
     file;
 
     constructor(private http: HttpClient) {}
@@ -18,9 +18,8 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {}
 
     process() {
-        if (this._event) {
-            var test = this.file;
-            var inputFile: File = this._event.target.files[0];
+        if (this.event) {
+            var inputFile: File = this.event.target.files[0];
 
             if (inputFile) {
                 this.sendPostRequest(inputFile);
@@ -64,7 +63,7 @@ export class AppComponent implements OnInit {
         this.file = data;
         var resultDisplay = document.getElementById('resultDisplay');
         if (resultDisplay != undefined) {
-            resultDisplay.innerHTML = 'Success!'
+            resultDisplay.innerHTML = 'Success!';
         }
     }
 
@@ -76,8 +75,8 @@ export class AppComponent implements OnInit {
     }
 
     fileValidation(event) {
-        this._event = event;
-        const inputFile: File = this._event.target.files[0];
+        this.event = event;
+        const inputFile: File = this.event.target.files[0];
         if (inputFile) {
             var allowedExtensions = /(\.xls|\.xlsx)$/i;
             if (!allowedExtensions.exec(inputFile.name)) {
