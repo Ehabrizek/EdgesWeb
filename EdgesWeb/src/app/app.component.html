@@ -1,0 +1,25 @@
+<main>
+  
+  <script src="app.component.ts"></script>
+<body>
+  <h1 id="Heading">Welcome to Edges</h1>
+  Input Excel File!<br>
+  <input id="fileInput" title="input" type="file" class="file-input"
+       (change)="fileValidation($event)" #fileUpload><br><br>
+
+    <label for="sheet">Enter the name of the Excel sheet:</label><br>
+    <input type="text" id="sheet" value="Sheet1" size="75" ><br><br>
+
+    <label for="protein">Enter the header of the Protein Name column:</label><br>
+    <input type="text" id="protein" value="Protein Name" size="75" ><br><br>
+
+    <label for="pathwaydesc">Enter the header of the Pathway Description column:</label><br>
+    <input type="text" id="pathwaydesc" value="Pathway Description" size="75" ><br><br>
+
+    <label for="pathwayid">Enter the header of the Pathway Id column:</label><br>
+    <input type="text" id="pathwayid" value="Pathway Id" size="75" ><br><br>
+
+    <input type="submit" value="Process" (click)="process()"/><br><br>
+    <input type="submit" value="Download" (click)="download()"/>
+</body>
+</main>
