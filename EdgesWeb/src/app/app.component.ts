@@ -79,10 +79,23 @@ export class AppComponent implements OnInit {
         if (resultDisplay) {
             resultDisplay.innerHTML = message;
         }
+        this.showHideDownloadButton(message);
+    }
+
+    showHideDownloadButton(message :string) {
+        var downloadButton = document.getElementById('downloadButton');
+        if (downloadButton) {
+            if (message === 'Success!') {
+                downloadButton.style.display = "block";
+            }
+            else {
+                downloadButton.style.display = "none";
+            }
+        }
     }
 
     download() {
-        if (this.outputFile != null) {
+        if (this.outputFile) {
             var data = new Blob([this.outputFile], { type: 'text/plain' });
             saveAs(data, 'EdgesOutput.csv');
         }
