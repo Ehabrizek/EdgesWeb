@@ -28,6 +28,7 @@ namespace EdgesWebAPI.BackgroundService
         private void DoWork(object? state)
         {
             _logger.LogInformation("File deletions starting.");
+            Directory.CreateDirectory("./files");
             foreach (var file in Directory.GetFiles("./files", "*", SearchOption.AllDirectories))
             {
                 File.Delete(file);

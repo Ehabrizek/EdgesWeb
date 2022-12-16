@@ -56,7 +56,7 @@ export class AppComponent implements OnInit {
     }
 
     sendPostRequest(formData :FormData) {
-        return this.http.post('/Edges', formData, {responseType: 'text'})
+        return this.http.post('https://combinationedges.com/api/edges', formData, {responseType: 'text'})
           .pipe(
             tap({
               next: (data) => this.logSuccess(data),
