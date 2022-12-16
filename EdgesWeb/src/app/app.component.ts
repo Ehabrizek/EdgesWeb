@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
         if (this.inputFile) {
             var allowedExtensions = /(\.xls|\.xlsx)$/i;
             if (!allowedExtensions.exec(this.inputFile.name)) {
-                alert('File must having extension .xls or .xlsx');
+                alert('File must have extension .xls or .xlsx');
                 event.target.value = null;
                 return false;
             }
