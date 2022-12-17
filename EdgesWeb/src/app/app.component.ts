@@ -48,7 +48,8 @@ export class AppComponent implements OnInit {
             formData.append("protein", protein);
             formData.append("pathwaydesc", pathwaydesc);
             formData.append("pathwayid", pathwayid);
-
+            
+            this.updateResultDisplay("Processing...")
             this.sendPostRequest(formData).subscribe();
         }
         else {
