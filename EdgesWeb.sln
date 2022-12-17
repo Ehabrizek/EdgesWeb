@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32422.2
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgesWebAPI", "..\EdgesWebAPI\EdgesWebAPI.csproj", "{F92F9FEC-E50C-46F0-8303-C92FD8BA3E46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EdgesWebAPI", ".\EdgesWebAPI\EdgesWebAPI.csproj", "{F92F9FEC-E50C-46F0-8303-C92FD8BA3E46}"
 EndProject
-Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "EdgesWeb", "EdgesWeb.esproj", "{FBED464A-3BC4-4426-AC6F-45EE445D6D9F}"
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "EdgesWeb", ".\EdgesWeb\EdgesWeb.esproj", "{FBED464A-3BC4-4426-AC6F-45EE445D6D9F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
