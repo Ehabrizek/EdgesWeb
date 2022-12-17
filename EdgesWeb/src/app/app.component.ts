@@ -18,15 +18,16 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {}
 
     fileValidation(event) {
-        this.inputFile = event.target.files[0];
-        if (this.inputFile) {
+        var file :File = event.target.files[0];
+        if (file) {
             var allowedExtensions = /(\.xls|\.xlsx)$/i;
-            if (!allowedExtensions.exec(this.inputFile.name)) {
+            if (!allowedExtensions.exec(file.name)) {
                 alert('File must have extension .xls or .xlsx');
                 event.target.value = null;
                 return false;
             }
             else {
+                this.inputFile = file;
                 return true;
             }
         }
