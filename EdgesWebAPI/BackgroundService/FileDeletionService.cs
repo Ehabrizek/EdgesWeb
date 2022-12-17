@@ -20,7 +20,7 @@ namespace EdgesWebAPI.BackgroundService
             _logger.LogInformation("File Deletion Service running.");
 
             _timer = new Timer(DoWork, null, TimeSpan.FromSeconds(5),
-                TimeSpan.FromSeconds(30));
+                TimeSpan.FromHours(2));
 
             return Task.CompletedTask;
         }
