@@ -23,6 +23,7 @@ export class AppComponent implements OnInit {
             var allowedExtensions = /(\.xls|\.xlsx)$/i;
             if (!allowedExtensions.exec(file.name)) {
                 alert('File must have extension .xls or .xlsx');
+                this.inputFile = null;
                 event.target.value = null;
                 return false;
             }
@@ -50,6 +51,7 @@ export class AppComponent implements OnInit {
             formData.append("pathwayid", pathwayid);
             
             this.updateResultDisplay("Processing...")
+            this.enableDisableProcessButton(true);
             this.sendPostRequest(formData).subscribe();
         }
         else {
@@ -70,10 +72,12 @@ export class AppComponent implements OnInit {
     logSuccess(data) {
         this.outputFile = data;
         this.updateResultDisplay('Success!');
+        this.enableDisableProcessButton(false);
     }
 
     logError(error) {
         this.updateResultDisplay(error.error);
+        this.enableDisableProcessButton(false);
     }
 
     updateResultDisplay(message :string) {
@@ -82,6 +86,14 @@ export class AppComponent implements OnInit {
             resultDisplay.innerHTML = message;
         }
         this.showHideDownloadButton(message);
+    }
+
+    enableDisableProcessButton(disable :boolean)
+    {
+        var processButton = <HTMLButtonElement>document.getElementById('processButton');
+        if (processButton) {
+            processButton.disabled = disable
+        }
     }
 
     showHideDownloadButton(message :string) {
